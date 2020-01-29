@@ -16,4 +16,16 @@ export default defineMessages({
     id: `${scope}.features`,
     defaultMessage: 'Features',
   },
+  login: {
+    id: `${scope}.login`,
+    defaultMessage: 'Login',
+  },
+  register: {
+    id: `${scope}.register`,
+    defaultMessage: 'Register',
+  },
+  logout: {
+    id: `${scope}.logout`,
+    defaultMessage: 'Logout',
+  },
 });

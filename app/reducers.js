@@ -8,7 +8,8 @@ import { connectRouter } from 'connected-react-router';
 import history from 'utils/history';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-
+import loginReducer from './containers/LoginPage/reducer';
+import registerReducer from './containers/RegisterPage/reducer';
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
  */
@@ -17,6 +18,8 @@ export default function createReducer(injectedReducers = {}) {
     global: globalReducer,
     language: languageProviderReducer,
     router: connectRouter(history),
+    login: loginReducer,
+    register: registerReducer,
     ...injectedReducers,
   });
 

@@ -16,7 +16,10 @@ import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-
+import LoginPage from '../LoginPage';
+import RegisterPage from '../RegisterPage';
+import ProfilePage from '../ProfilePage';
+import Logout from '../Logout';
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
@@ -28,7 +31,36 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+function isUserLoggedIn() {
+  return localStorage.getItem('login') === 'true';
+}
+
 export default function App() {
+  const userLoggedIn = isUserLoggedIn();
+  if (userLoggedIn) {
+    return (
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - React.js Boilerplate"
+          defaultTitle="React.js Boilerplate"
+        >
+          <meta
+            name="description"
+            content="A React.js Boilerplate application"
+          />
+        </Helmet>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={ProfilePage} />
+          <Route path="/features" component={FeaturePage} />
+          <Route path="/logout" component={Logout} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+        <Footer />
+        <GlobalStyle />
+      </AppWrapper>
+    );
+  }
   return (
     <AppWrapper>
       <Helmet
@@ -41,6 +73,8 @@ export default function App() {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
